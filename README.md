@@ -2,7 +2,7 @@
 A simple investments allocation problem solved with a LP model and Google OR-tools, including a sensitivity analysis.
 
 ----
-The DR Fund has just obtained 142600€ and is looking for investment opportunities. All new investments will either be made in oil, steel, or government bonds. The corresponding expected rate of return for each investment type is given as:\
+The DR Fund has just obtained 142600€ and is looking for investment opportunities. All new investments will either be made in oil, steel, or Greek government bonds. The corresponding expected rate of return for each investment type is given as:\
 \
 Investment 	Project Rate of Return (%)\
 Atlantic Oil: 2.5\
