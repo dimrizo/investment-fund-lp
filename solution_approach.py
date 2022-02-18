@@ -4,45 +4,77 @@
 
 from ortools.linear_solver import pywraplp
 
-def LinearProgrammingExample():
-    
-    # Instantiate a Glop solver, naming it LinearExample.
+
+def create_data_model():
+    """Stores the data for the problem."""
+    data = {}
+    data['constraint_coeffs'] = [
+        [1, 1, 1, 1, 1],
+        [1, 1, 0, 0, 0],
+        [0, 0, 1, 1, 0],
+        [0, 0, 0.25, 0.25, -1],
+        [-0.6, 0.4, 0, 0, 0],
+    ]
+    data['bounds'] = [142600.0, 60300.0, 82300.0, 0.0, 0.0]
+    data['obj_coeffs'] = [0.025, 0.065, 0.072, 0.074, 0.037]
+    data['num_vars'] = 5
+    data['num_constraints'] = 5
+    return data
+
+
+def main():
+    data = create_data_model()
+    # Create the mip solver with the SCIP backend.
     solver = pywraplp.Solver.CreateSolver('GLOP')
 
-    # Create the two variables and let them take on any non-negative value.
-    x = solver.NumVar(0, solver.infinity(), 'x')
-    y = solver.NumVar(0, solver.infinity(), 'y')
-
+    # declaration of decision variables
+    infinity = solver.infinity()
+    X = {}
+    for j in range(data['num_vars']):
+        X[j] = solver.NumVar(0, infinity, 'X[%i]' % j)
     print('Number of variables =', solver.NumVariables())
 
-    # Constraint 0: x + 2y <= 14.
-    solver.Add(x + 2 * y <= 14.0)
-
-    # Constraint 1: 3x - y >= 0.
-    solver.Add(3 * x - y >= 0.0)
-
-    # Constraint 2: x - y <= 2.
-    solver.Add(x - y <= 2.0)
-
+    # declaration of problem constraints
+    constraint_list = []
+    for i in range(data['num_constraints']):
+        constraint = solver.RowConstraint(0, data['bounds'][i], '')
+        for j in range(data['num_vars']):
+            constraint.SetCoefficient(X[j], data['constraint_coeffs'][i][j])
+        constraint_list.append(constraint)
     print('Number of constraints =', solver.NumConstraints())
 
-    # Objective function: 3x + 4y.
-    solver.Maximize(3 * x + 4 * y)
+    # Setting the objective function
+    objective = solver.Objective()
+    for j in range(data['num_vars']):
+        objective.SetCoefficient(X[j], data['obj_coeffs'][j])
+    objective.SetMaximization()
 
-    # Solve the system.
     status = solver.Solve()
 
     if status == pywraplp.Solver.OPTIMAL:
-        print('Solution:')
+        print()
+        print("Optimal solution calcualted:")
         print('Objective value =', solver.Objective().Value())
-        print('x =', x.solution_value())
-        print('y =', y.solution_value())
+        for j in range(data['num_vars']):
+            print(X[j].name(), ' = ', X[j].solution_value())
+        print()
+        print('Problem solved in %f milliseconds' % solver.wall_time())
+        print('Problem solved in %d iterations' % solver.iterations())
+        print()
+        print("Reduced costs for decision varibles:")
+        for index in X:
+            variable = X[index]
+            print(('%s: reduced cost = %f' % (variable.name(), variable.reduced_cost())))
+        print()
+        print("Shadow prices and activity for each constraint:")
+        activities = solver.ComputeConstraintActivities() # get some of LHS of constraint
+        for i, constraint in enumerate(constraint_list):
+            print(('constraint %d: dual value = %f, activity = %f' %
+              (i, constraint.dual_value(), activities[constraint.index()])))
     else:
         print('The problem does not have an optimal solution.')
 
-    print('\nAdvanced usage:')
-    print('Problem solved in %f milliseconds' % solver.wall_time())
-    print('Problem solved in %d iterations' % solver.iterations())
 
-
-LinearProgrammingExample()
+if __name__ == '__main__':
+    main()
+ 
