@@ -27,4 +27,4 @@ Mathematical LP model for the investment problem solution. For the development o
 |:---:|:---:|
 | <img src="https://render.githubusercontent.com/render/math?math=MAXIMIZE \sum_{i=1}^{5}{{\rm PRR}_i*X_i}">| *6* |
 
-** Answers provided when Python script is run **
+** This is the answer to question A. Answers to B & C provided when Python script is run **
