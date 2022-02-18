@@ -27,4 +27,4 @@ A) Formulate a linear program (clearly define your decision variables) to maximi
 B) Calculate the optimal solution by using a LP problem solver.\
 C) Sensitivity analysis: Calculate the shadow price for each constraint and the reduced cost for each variable.
 
-** Answers provided when Python script is run **
+** Math model included in lp_math_model.md. Answers to B & C are given when python script is run! **
