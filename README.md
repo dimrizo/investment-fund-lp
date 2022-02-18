@@ -2,7 +2,7 @@
 A simple investments allocation problem solved with a LP model and Google OR-tools, including a sensitivity analysis.
 
 ----
-The DR Fund has just obtained 142600€ and is looking for investment opportunities. All new investments will either be made in oil, steel, or government bonds. The corresponding expected rate of return for each investment type is given as:\
+The DR Fund has just obtained 142600€ and is looking for investment opportunities. All new investments will either be made in oil, steel, or Greek government bonds. The corresponding expected rate of return for each investment type is given as:\
 \
 Investment 	Project Rate of Return (%)\
 Atlantic Oil: 2.5\
@@ -25,4 +25,6 @@ Furthermore, the DR Fund management imposes the following investment requirement
 **Questions**:\
 A) Formulate a linear program (clearly define your decision variables) to maximize the projected returns for this investment problem.\
 B) Calculate the optimal solution by using a LP problem solver.\
-C) Carry out and comment on the required sensitivity analysis regarding coefficient changes of the decision variables of the objective function, as well as for changes in the Right Hand Side (RHS) of the constraints of the model.
+C) Sensitivity analysis: Calculate the shadow price for each constraint and the reduced cost for each variables.
+
+** Answers provided when Python script is run **
