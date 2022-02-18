@@ -25,4 +25,4 @@ Furthermore, the DR Fund management imposes the following investment requirement
 **Questions**:\
 A) Formulate a linear program (clearly define your decision variables) to maximize the projected returns for this investment problem.\
 B) Calculate the optimal solution by using a LP problem solver.\
-C) Carry out and comment on the required sensitivity analysis regarding coefficient changes of the decision variables of the objective function, as well as for changes in the Right Hand Side (RHS) of the constraints of the model.
+C) Sensitivity analysis: Calculate the shadow price for each constraint and the reduced cost for each variables.
