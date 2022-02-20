@@ -2,7 +2,7 @@
 # A simple investments allocation problem solved with a Linear Programming (LP) model and Google OR-tools, including a sensitivity analysis.
 
 ----
-The DR Fund has just obtained 142600€ and is looking for investment opportunities. All new investments will either be made in oil, steel, or Greek government bonds. The corresponding expected rate of return for each investment type is given as:\
+The R&C Fund has just obtained 142600€ and is looking for investment opportunities. All new investments will either be made in oil, steel, or Greek government bonds. The corresponding expected rate of return for each investment type is given as:\
 \
 Investment 	Project Rate of Return (%)\
 Atlantic Oil: 2.5\
@@ -11,7 +11,7 @@ Midwest Steel: 7.2\
 Huber Steel: 7.4\
 Greek Government Bonds: 3.7\
 \
-Furthermore, the DR Fund management imposes the following investment requirements:
+Furthermore, the R&C Fund management imposes the following investment requirements:
 
 1 - The overall investment amount in the oil industry should not be more than 60300€.
 
